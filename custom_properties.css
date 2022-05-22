@@ -1,10 +1,9 @@
 /* Citation: I learned CSS selectors and properties I am using here from a YouTube Video by freeCodeCamp
 Link: https://www.youtube.com/watch?v=_xkSvufmjEs&t=130s */
 
-
 /* Custom properties */
 :root {
-    --ff-primary:  sans-serif, Georgia, 'Times New Roman', Times, serif;
+    --ff-primary: sans-serif, Georgia, 'Times New Roman', Times, serif;
     /* this is from google fonts: 'Source Sans Pro', sans-serif; */
     --ff-secondary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     /* this is from google fonts: 'Source code Pro', monospace; */
@@ -13,10 +12,9 @@ Link: https://www.youtube.com/watch?v=_xkSvufmjEs&t=130s */
     --fw-bold: 900;
 
     --clr-dark:  rgb(36, 31, 27);
-    --clr-light: #fff;
-    --clr-darkblue: rgb(2, 26, 129);
-    --clr-darkorange: darkorange; 
-    /* alternatively:  darkorange; darkblue; lightblue; */
+    --clr-light: rgb(233, 229, 229);
+    --clr-darkblue: rgb(6, 14, 51);
+    --clr-lightblue: rgb(4, 58, 165); 
 
     --fs-h1: 3rem;
     --fs-h2: 2.25rem;
@@ -31,7 +29,7 @@ Link: https://www.youtube.com/watch?v=_xkSvufmjEs&t=130s */
 
 @media (min-width: 800px) {
     :root {
-        --fs-h1: 4.5rem;
+        --fs-h1: 4.2rem;
         --fs-h2: 3.75rem;
         --fs-h3: 2.4rem;       
         --fs-body: 1.125rem;
@@ -67,8 +65,8 @@ strong {
 .btn {
     display: inline-block;
     padding: .5em 1.5em;
-    background: var(--clr-darkorange);
-    color: var(--clr-dark);
+    background: var(--clr-lightblue);
+    color: var(--clr-);
     text-decoration: none;
     cursor: pointer;
     margin: 3px;
@@ -84,7 +82,7 @@ strong {
 }
 
 :focus {
-    outline: 3px solid var(--clr-darkorange);
+    outline: 3px solid var(--clr-lightblue);
     outline-offset: 3px;
 }
 
@@ -114,7 +112,7 @@ h3 { font-size: var(--fs-h3);}
 
 .section__subtitle__intro,
 .section__subtitle__about, .my__book {
-    background: var(--clr-darkorange);
+    background: var(--clr-lightblue);
     padding: .25em 1em;
     font-family: var(--ff-secondary);
     margin-bottom: 1em;
@@ -127,6 +125,6 @@ h3 { font-size: var(--fs-h3);}
 }
 
 .section__title__zoom {
-    color: var(--clr-darkorange);
+    color: var(--clr-lightblue);
     margin-bottom: .5em;
 }
