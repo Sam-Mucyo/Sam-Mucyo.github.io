@@ -186,10 +186,11 @@ img{
         align-self: center;
     }
     &__title{
-        font-size: var(--big-font-size);
+        font-size: var(--smaller-font-size);
         margin-bottom: var(--mb-5);
 
         &-color{
+            font-size: var(--big-font-size);
             color: var(--first-color);
         }
     }
@@ -222,7 +223,10 @@ img{
         }
     }
 }
-
+.email{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
 /*BUTTONS*/
 .button{
     display: inline-block;
