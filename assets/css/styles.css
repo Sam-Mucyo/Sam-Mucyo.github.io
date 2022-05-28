@@ -309,7 +309,7 @@ img {
 }
 
 .home__description {
-  margin-bottom: var(--mb-2);
+  margin-bottom: var(--mb-3);
 }
 
 .home__scroll {
@@ -388,7 +388,29 @@ img {
   background-color: transparent;
   color: var(--first-color-alt);
 }
+/*==================== ABOUT ====================*/
+.about__img {
+  width: 200px;
+  border-radius: .5rem;
+  justify-self: center;
+  align-self: center;
+}
 
+.about__description {
+  text-align: center;
+  margin-bottom: var(--mb-2-5);
+}
+
+.about__info {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: var(--mb-2-5);
+}
+
+.about__buttons {
+  display: flex;
+  justify-content: center;
+}
 /*==================== SKILLS ====================*/
 .skills__container {
   row-gap: 0;
