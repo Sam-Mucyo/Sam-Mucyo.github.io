@@ -1,137 +1,400 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="assets/css/styles.css">
-
-    <!-------------------------------- BOX ICON -------------------------------->
-    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' 
-          rel='stylesheet'>
-
-    <title>Sam Mucyo</title>
-  </head>
-  <body>
-    <!------------------------------- HEADER -------------------------------->
-    <header class="l-header">
-      <nav class="nav bd-grid">
-        <div>
-          <a href="#" class="nav__logo">Sam</a>
-        </div>
-
-        <div class="nav__menu" id="nav-menu">
-          <ul class="nav__list">
-            <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
-            <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
-            <!-- <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li> -->
-          </ul>
-        </div>
-
-        <div class="nav__toggle" id="nav-toggle">
-          <i class='bx bx-menu'></i>
-        </div>
-      </nav>
-    </header>
-
-    <main class="l-main">
-        <!------------------------------- HOME -------------------------------->
-      <section class="home bd-grid" id="home">
+        <!--------------------- UNICONS --------------------->
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
         
-        <!---------------------------- Home Data ------------------------------>
-        <div class="home__data">
-          <h1 class="home__title">Homepage of<br><span class="home__title-color">
-              Sam Mucyo</span></h1>
-          <h3>Computer Science Student<br>
-            <a href="mailto:sammucyo@college.harvard.edu">sammucyo@college.harvard.edu</a><br>
-            <a href="https://www.harvard.edu/">
-              Harvard University</a></h3>
-          <!-- <a href="#contact" class="btn">Contact</a> -->
-          <a href="https://calendly.com/sammucyo/30min" class="btn">Meet</a>
-        </div>
-        
-        <!---------------------------- Home_social ------------------------------>
-        <div class="home__social">
-          <a href="https://www.linkedin.com/in/mucyo-samuel" target="_blank" rel="noopener noreferrer" class="home__social-icon"><i class='bx bxl-linkedin'></i></a>
-          <a href="https://wa.me/+18579288144" target="_blank" rel="noopener noreferrer" class="home__social-icon"><i class='bx bxl-whatsapp'></i></a>
-          <a href="https://github.com/Sam-Mucyo" target="_blank" rel="noopener noreferrer" class="home__social-icon"><i class='bx bxl-github'></i></a>
-          <a href="https://www.instagram.com/saml250/" target="_blank" rel="noopener noreferrer" class="home__social-icon"><i class='bx bxl-instagram' ></i></a>
-          <a href="https://www.facebook.com/mucyo.samuel.5/" target="_blank" rel="noopener noreferrer" class="home__social-icon"><i class='bx bxl-facebook' ></i></a>
-        </div>
+        <!--------------------- SWIPER CSS--------------------->
+        <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
 
-        <!---------------------------- Home Image ------------------------------>
-        <div class="home__img">
-          <svg class="home__blob" viewBox="0 0 479 467" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <mask id="mask0" mask-type="alpha">
-                <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
-              </mask>
-              <g mask="url(#mask0)">
-                <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
-                <image class="home__blob-img" x="50" y="60" href="assets/img/me.png"/>
-              </g>
-            </svg>
-        </div>
-      </section>
+        <!--------------------- CSS ----------------------->
+        <link rel="stylesheet" href="assets/css/styles.css">
 
-      <!------------------------------- ABOUT -------------------------------->
-      <section class="about section " id="about">
-        <h2 class="section-title">About</h2>
+        <title>Sam Mucyo</title>
+    </head>
+    <body>
+        <!--------------------- HEADER --------------------->
+        <header class="header" id="header">
+            <nav class="nav container">
+                <a href="#" class="nav__logo">Sam</a>
 
-        <div class="about__container bd-grid">
-            <div class="about__img">
-              <img src="assets/img/about.jpg" alt="">
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list grid">
+                        <li class="nav__item">
+                            <a href="#home" class="nav__link active-link">
+                                <i class="uil uil-estate nav__icon"></i> Home
+                            </a>
+                        </li>
+
+                        <li class="nav__item">
+                            <a href="#skills" class="nav__link">
+                                <i class="uil uil-file-alt nav__icon"></i> Skills
+                            </a>
+                        </li>
+
+                        <li class="nav__item">
+                            <a href="#portfolio" class="nav__link">
+                                <i class="uil uil-scenery nav__icon"></i> Portfolio
+                            </a>
+                        </li>
+
+                    </ul>
+                    
+                    <i class="uil uil-times nav__close" id="nav-close"></i>
+                </div>
+
+                <div class="nav__btns">
+                    <!-- Theme change button -->
+                    <i class="uil uil-moon change-theme" id="theme-button"></i>
+
+                    <div class="nav__toggle" id="nav-toggle">
+                        <i class="uil uil-apps"></i>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!--------------------- MAIN --------------------->
+        <main class="main">
+            <!--------------------- HOME --------------------->
+            <section class="home section" id="home">
+                <div class="home__container container grid">
+                    <div class="home__content grid">
+                        <div class="home__social"> 
+                          <a href="https://www.linkedin.com/in/mucyo-samuel" target="_blank" rel="noopener noreferrer" class="home__social-icon"><i class='uil uil-linkedin-alt'></i></a>
+                          <a href="https://github.com/Sam-Mucyo" target="_blank" rel="noopener noreferrer" class="home__social-icon"><i class='uil uil-github'></i></a>
+                          <a href="mailto:sammucyo@college.harvard.edu" target="_blank" rel="noopener noreferrer" class="home__social-icon"><i class='uil uil-envelope'></i></a>
+                          <a href="tel:+18579288144" target="_blank" rel="noopener noreferrer" class="home__social-icon"><i class='uil uil-phone'></i></a>
+                          <a href="https://wa.me/+18579288144" target="_blank" rel="noopener noreferrer" class="home__social-icon"><i class='uil uil-whatsapp'></i></a>
+                        </div>
+    
+                        <div class="home__img">
+                            <svg class="home__blob" viewBox="0 0 200 187">
+                                <mask id="mask0" mask-type="alpha">
+                                    <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 
+                                    130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 
+                                    97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 
+                                    0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"/>
+                                </mask>
+                                <g mask="url(#mask0)">
+                                    <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 
+                                    165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 
+                                    129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 
+                                    -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"/>
+                                    <image class="home__blob-img" x="12" y="4" href="assets/img/me.png"/>
+                                </g>
+                            </svg>
+                        </div>
+
+                        <div class="home__data">
+                            <h1 class="home__title">Sam Mucyo</h1>
+                            <h3 class="home__subtitle">Computer Science Student @ <br><a href="https://www.harvard.edu/"> Harvard University</a></h3>
+                            <p class="home__description">
+                               Software Developer Intern @ <br><a href="https://aws.amazon.com/"> Amazon Web Services </a> Summer '22 </p>
+                            <a href="https://calendly.com/sammucyo/30min" class="button button--flex">
+                                Schedule a Meeting <i class="uil uil-message button__icon"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!--------------------- ABOUT --------------------->
+            <section class="about section" id="about">
+              <h2 class="section__title">About Me</h2>
+              <span class="section__subtitle">My introduction</span>
+
+              <div class="about__container container grid">
+                  <img src="assets/img/about.jpg" alt="" class="about__img">
+
+                  <div class="about__data">
+                      <p class="about__description"><br>
+                        I am interested in designing efficient and optimized 
+                        software applications and applying machine and deep 
+                        learning techniques to solving real-world problems.
+                        A bold, passionate learner who loves new challenges.
+                      </p>
+                      <div class="about__buttons">
+                          <a download="" href="assets/pdf/resume.pdf" class="button button--flex">
+                              My Resume <i class="uil uil-download-alt button__icon"></i>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+          </section>
+
+                    
+                    <div class="home__scroll">
+                        <a href="#skills" class="home__scroll-button button--flex">
+                            <i class="uil uil-mouse-alt home__scroll-mouse"></i>
+                            <span class="home__scroll-name">Scroll down</span>
+                            <i class="uil uil-arrow-down home__scroll-arrow"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!--------------------- SKILLS --------------------->
+            <section class="skills section" id="skills">
+                <h2 class="section__title">Skills</h2>
+                <span class="section__subtitle">My technical level</span>
+
+                <div class="skills__container container grid">
+                    <div>
+                        <!-----------------------===== SKILLS 1 ---------------------=====-->
+                        <div class="skills__content skills__open">
+                            <div class="skills__header">
+                                <i class="uil uil-brackets-curly skills__icon"></i>
+    
+                                <div>
+                                    <h1 class="skills__title">Frontend</h1>
+                                </div>
+    
+                                <i class="uil uil-angle-down skills__arrow"></i>
+                            </div>
+    
+                            <div class="skills__list grid">
+                                <div class="skills__data">
+                                    <div class="skills__titles">
+                                        <h3 class="skills__name">HTML</h3>
+                                    </div>
+                                </div>
+    
+                                <div class="skills__data">
+                                    <div class="skills__titles">
+                                        <h3 class="skills__name">CSS</h3>
+                                    </div>
+                                </div>
+    
+                                <div class="skills__data">
+                                    <div class="skills__titles">
+                                        <h3 class="skills__name">JavaScript</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-----------------------===== SKILLS 2 ---------------------=====-->
+                        <div class="skills__content skills__close">
+                            <div class="skills__header">
+                                <i class="uil uil-server-network skills__icon"></i>
+    
+                                <div>
+                                    <h1 class="skills__title">Backend</h1>
+                                </div>
+    
+                                <i class="uil uil-angle-down skills__arrow"></i>
+                            </div>
+    
+                            <div class="skills__list grid">
+                                <div class="skills__data">
+                                    <div class="skills__titles">
+                                        <h3 class="skills__name">Python</h3>
+                                    </div>
+                                </div>
+    
+                                <div class="skills__data">
+                                    <div class="skills__titles">
+                                        <h3 class="skills__name">Flask</h3>
+                                    </div>
+                                </div>
+    
+                                <div class="skills__data">
+                                    <div class="skills__titles">
+                                        <h3 class="skills__name">SQL</h3>
+                                    </div>
+                                </div>
+    
+                                <div class="skills__data">
+                                    <div class="skills__titles">
+                                        <h3 class="skills__name">AWS</h3>
+                                    </div>
+                                </div>
+                                <div class="skills__data">
+                                  <div class="skills__titles">
+                                      <h3 class="skills__name">Bash Scripting</h3>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <!-----------------------===== SKILLS 3 ---------------------=====-->
+                        <div class="skills__content skills__close">
+                          <div class="skills__header">
+                              <i class="uil uil-swatchbook skills__icon"></i>
+  
+                              <div>
+                                  <h1 class="skills__title">Machine Learning</h1>
+                              </div>
+  
+                              <i class="uil uil-angle-down skills__arrow"></i>
+                          </div>
+  
+                          <div class="skills__list grid">
+                              <div class="skills__data">
+                                  <div class="skills__titles">
+                                      <h3 class="skills__name">TensorFlow</h3>
+                                  </div>
+                              </div>
+  
+                              <div class="skills__data">
+                                  <div class="skills__titles">
+                                      <h3 class="skills__name">Keras</h3>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <!-----------------------===== SKILLS 4 ---------------------=====-->
+                      <div class="skills__content skills__close">
+                        <div class="skills__header">
+                            <i class="uil uil-swatchbook skills__icon"></i>
+
+                            <div>
+                                <h1 class="skills__title">Mobile App</h1>
+                            </div>
+
+                            <i class="uil uil-angle-down skills__arrow"></i>
+                        </div>
+
+                        <div class="skills__list grid">
+                            <div class="skills__data">
+                                <div class="skills__titles">
+                                    <h3 class="skills__name">Swift</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--------------------- PORTFOLIO --------------------->
+            <section class="portfolio section" id="portfolio">
+                <h2 class="section__title">Projects</h2>
+                <span class="section__subtitle">Most recent work</span>
+
+                <div class="portfolio__container container swiper-container">
+                    <div class="swiper-wrapper">
+                        <!-----------------------===== PORTFOLIO 1 ---------------------=====-->
+                        <div class="portfolio__content grid swiper-slide">
+                            <img src="assets/img/portfolio1.jpg" alt="" class="portfolio__img">
+    
+                            <div class="portfolio__data">
+                                <h3 class="portfolio__title">Attendance Web App</h3>
+                                <p class="portfolio__description">A Website app to mark attendance using facial recognition in real-time</p>
+                                <a href="https://github.com/Sam-Mucyo/AtTenDance" class="button button--flex button--small portfolio__button">
+                                    Demo
+                                    <i class="uil uil-arrow-right button__icon"></i>
+                                </a>
+                            </div>
+                        </div>
+    
+                        <!-----------------------===== PORTFOLIO 2 ---------------------=====-->
+                        <div class="portfolio__content grid swiper-slide">
+                            <img src="assets/img/portfolio2.jpg" alt="" class="portfolio__img">
+    
+                            <div class="portfolio__data">
+                                <h3 class="portfolio__title">Facial Emotion Detector </h3>
+                                <p class="portfolio__description">A program to detect facial expression of a person using Deepface Python Framework. 
+                                </p>
+                                <a href="https://colab.research.google.com/drive/1Xgb4Z_09fAX5-N3No38ZEQBtOa3_xzi0?usp=sharing" class="button button--flex button--small portfolio__button">
+                                    Demo
+                                    <i class="uil uil-arrow-right button__icon"></i>
+                                </a>
+                            </div>
+                        </div>
+    
+                        <!-----------------------===== PORTFOLIO 3 ---------------------=====-->
+                        <div class="portfolio__content grid swiper-slide">
+                            <img src="assets/img/portfolio3.jpg" alt="" class="portfolio__img">
+    
+                            <div class="portfolio__data">
+                                <h3 class="portfolio__title">Handwritten Digit Recognition</h3>
+                                <p class="portfolio__description">A program that uses neural networks to recognize handwritten digits. Used TensorFlow and MNIST Dataset to train the model.</p>
+                                <a href="https://colab.research.google.com/drive/1sA0vD_wb9hI7UDtWgV9ZkJceWbd_4WrA?usp=sharing" class="button button--flex button--small portfolio__button">
+                                    Demo
+                                    <i class="uil uil-arrow-right button__icon"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <!-----------------------===== PORTFOLIO 4 ---------------------=====-->
+                        <div class="portfolio__content grid swiper-slide">
+                          <img src="assets/img/portfolio3.jpg" alt="" class="portfolio__img">
+  
+                          <div class="portfolio__data">
+                              <h3 class="portfolio__title">Flashcards iOS App</h3>
+                              <p class="portfolio__description">An app that allows users to add and revise their own Flashcards.</p>
+                              <a href="https://github.com/Sam-Mucyo/Flashcards" class="button button--flex button--small portfolio__button">
+                                  Demo
+                                  <i class="uil uil-arrow-right button__icon"></i>
+                              </a>
+                          </div>
+                      </div>
+                    </div>
+
+                    <div class="swiper-button-next">
+                        <i class="uil uil-angle-right-b swiper-portfolio-icon"></i>
+                    </div>
+                    <div class="swiper-button-prev">
+                        <i class="uil uil-angle-left-b swiper-portfolio-icon"></i>
+                    </div>
+
+                    <div class="swiper-pagination"></div>
+                </div>
+            </section>
+
+            <!--------------------- PROJECT IN MIND --------------------->
+            <section class="project section">
+                <div class="project__bg">
+                    <div class="project__container container grid">
+                        <div class="project__data">
+                            <h2 class="project__title">You have a new project</h2>
+                            <p class="project__description">Contact me now and get a 30% discount on your new project.</p>
+                            <a href="#" class="button button--flex button--white">
+                                Contact Me
+                                <i class="uil uil-message button__icon"></i>
+                            </a>
+                        </div>
+    
+                        <img src="assets/img/project.png" alt="" class="project__img">
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!--------------------- FOOTER --------------------->
+        <footer class="footer">
+            <div class="footer__bg">
+                <div class="footer__container container grid">
+                    <div>
+                        <h1 class="footer__title">Sam</h1>
+                        <span class="footer__subtitle">Software developer</span>
+                    </div>
+
+                    <div class="footer__socials">
+                        <a href="https://www.linkedin.com/in/mucyo-samuel" target="_blank" rel="noopener noreferrer" class="footer__social"><i class='uil uil-linkedin-alt'></i></a>
+                        <a href="https://wa.me/+18579288144" target="_blank" rel="noopener noreferrer" class="footer__social"><i class='uil uil-whatsapp'></i></a>
+                        <a href="https://github.com/Sam-Mucyo" target="_blank" rel="noopener noreferrer" class="footer__social"><i class='uil uil-github'></i></a>
+                        <a href="https://www.instagram.com/saml250/" target="_blank" rel="noopener noreferrer" class="footer__social"><i class='uil uil-instagram' ></i></a>
+                    </div>
+                </div>
             </div>
-            
-            <div>
-              <h2 class="about__subtitle">Student & Junior Software Engineer </h2>
-              <p class="about__text">
-                I'm a student at Harvard concetrating in Computer Science. 
-                In my free time, I enjoy sharing my knowledge through tutoring 
-                and engaging in Tech related discussions: AI and Machine Learning. 
-                I also love challenging myself by working on hands-on programming projects 
-                and collaborating with other programmers on small and big projects.
-              </p>           
-            </div>                                   
-        </div>
-      </section>
+        </footer>
 
-      <!------------------------------- SKILLS -------------------------------->
+        <!----------------------- SCROLL TOP ----------------------->
+        <a href="#" class="scrollup" id="scroll-top">
+            <i class="uil uil-arrow-up scrollup__icon"></i>
+        </a>
 
-      <!------------------------------- Experience -------------------------------->
+        <!--------------------- SWIPER JS --------------------->
+        <script src="assets/js/swiper-bundle.min.js"></script>
 
-
-      <!------------------------------- CONTACT -------------------------------->
-      <!-- <section class="contact section" id="contact">
-          <h2 class="section-title">Contact</h2>
-
-          <div class="contact__container bd-grid">
-            <form action="#" class="contact__form">
-              <input type="text" placeholder="Name" class="contact__input">
-              <input type="mail" placeholder="Email" class="contact__input">
-              <textarea name="" id="" cols="0" rows="10" class="contact__input"></textarea>
-              <button class="contact__btn btn" type="submit" >Send</button>
-            </form>
-          </div>
-      </section>
-    </main> -->
-
-    <!------------------------------- FOOTER -------------------------------->
-    <footer class="footer">
-      <p class="footer__title">Sam</p>
-      <div class="footer__social">
-        <a href="https://www.linkedin.com/in/mucyo-samuel" target="_blank" rel="noopener noreferrer" class="footer__icon"><i class='bx bxl-linkedin'></i></a>
-        <a href="https://wa.me/+18579288144" target="_blank" rel="noopener noreferrer" class="footer__icon"><i class='bx bxl-whatsapp'></i></a>
-        <a href="https://github.com/Sam-Mucyo" target="_blank" rel="noopener noreferrer" class="footer__icon"><i class='bx bxl-github'></i></a>
-        <a href="https://www.instagram.com/saml250/" target="_blank" rel="noopener noreferrer" class="footer__icon"><i class='bx bxl-instagram' ></i></a>
-        <a href="https://www.facebook.com/mucyo.samuel.5/" target="_blank" rel="noopener noreferrer" class="footer__icon"><i class='bx bxl-facebook' ></i></a>
-      </div>
-    </footer>
-
-
-    <!------------------------------- SCROLL REVEAL -------------------------------->
-    <script src="https://unpkg.com/scrollreveal"></script>
-
-    <!------------------------------- MAIN JS -------------------------------->
-    <script src="assets/js/main.js"></script>
-  </body>
+        <!--------------------- MAIN JS --------------------->
+        <script src="assets/js/main.js"></script>
+    </body>
 </html>
