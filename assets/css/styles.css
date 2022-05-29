@@ -272,7 +272,7 @@ img {
 .home__social {
   display: grid;
   grid-template-columns: max-content;
-  row-gap: .1em;
+  row-gap: .57em;
 }
 
 .home__social-icon {
