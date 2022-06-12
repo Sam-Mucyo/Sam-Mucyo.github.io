@@ -10,6 +10,10 @@
         <!--------------------- SWIPER CSS--------------------->
         <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
 
+        <!-- Calendly -->
+        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+        <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
         <!--------------------- CSS ----------------------->
         <link rel="stylesheet" href="assets/css/styles.css">
 
@@ -100,12 +104,14 @@
                             <h3 class="home__subtitle">Computer Science Student @ <br><a href="https://www.harvard.edu/"> Harvard University</a></h3>
                             <p class="home__description">
                                Software Developer Intern @ <br><a href="https://aws.amazon.com/"> Amazon Web Services </a> Summer '22 </p>
-                            <a href="https://calendly.com/sammucyo/meet" class="button button--flex">
-                                Schedule a Meeting <i class="uil uil-message button__icon"></i>
-                            </a>
+                            <!-- Calendly link widget begin -->
+                            <a href="" class="button button--flex" id="schedule"
+                            onclick="Calendly.initPopupWidget({url: 'https://calendly.com/sammucyo?hide_landing_page_details=1&hide_gdpr_banner=1'});return false;">
+                            Schedule a Meeting <i class="uil uil-message button__icon"></i></a>
+                            <!-- Calendly link widget end -->
                         </div>
                     </div>
-       
+
                     <div class="home__scroll">
                         <a href="#skills" class="home__scroll-button button--flex">
                             <i class="uil uil-mouse-alt home__scroll-mouse"></i>
