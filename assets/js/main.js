@@ -156,25 +156,19 @@ const getCurrentTheme = () => document.body.classList.contains(darkTheme) ? 'dar
 const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'uil-moon' : 'uil-sun'
 
 
-let date = new Date();
-let hour = date.getHours();
 
-if (hour < 6 || hour > 18) {
-    // If time is between 6PM (18:00) to 6AM (06:00), apply dark theme
-    document.body.classList.add('darkTheme');
-    themeButton.classList.add('iconTheme');
-} else {
-    // Otherwise (6AM to 6PM), remove the dark theme
-    document.body.classList.remove('darkTheme');
-    themeButton.classList.remove('iconTheme');
-}
-
-// Activate / deactivate the theme manually with the button
-themeButton.addEventListener('click', () => {
+function toggleTheme() {
     // Add or remove the dark / icon theme
     document.body.classList.toggle(darkTheme)
     themeButton.classList.toggle(iconTheme)
     // We save the theme and the current icon that the user chose
     localStorage.setItem('selected-theme', getCurrentTheme())
     localStorage.setItem('selected-icon', getCurrentIcon())
+}
+
+toggleTheme()
+
+// Activate / deactivate the theme manually with the button
+themeButton.addEventListener('click', () => {
+    toggleTheme()
 })
