@@ -126,6 +126,15 @@ img {
   height: auto;
 }
 
+.project-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.project-link:hover {
+    text-decoration: underline;
+}
+
 /*==================== REUSABLE CSS CLASSES ====================*/
 .section {
   padding: 2rem 0 4rem;

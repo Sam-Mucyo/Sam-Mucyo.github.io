@@ -112,7 +112,7 @@
                         <!-- Calendly link widget begin -->
                         <a href="" class="button button--flex" id="schedule"
                             onclick="Calendly.initPopupWidget({url: 'https://calendly.com/sammucyo?hide_landing_page_details=1&hide_gdpr_banner=1'});return false;">
-                            Schedule a Meeting <i class="uil uil-message button__icon"></i></a>
+                            Schedule a Call <i class="uil uil-message button__icon"></i></a>
                         <!-- Calendly link widget end -->
                     </div>
                 </div>
@@ -122,7 +122,7 @@
         <!--------------------- ABOUT --------------------->
         <section class="about section" id="about">
             <h2 class="section__title">About Me</h2>
-            <span class="section__subtitle">My introduction</span>
+            <span class="section__subtitle">Intro</span>
 
             <div class="about__container container grid">
                 <img src="assets/img/about.jpg" alt="" class="about__img">
@@ -138,7 +138,7 @@
                     </p>
                     <div class="about__buttons">
                         <a download="" href="assets/pdf/Resume.pdf" class="button button--flex">
-                            My Resume <i class="uil uil-download-alt button__icon"></i>
+                            Resume <i class="uil uil-download-alt button__icon"></i>
                         </a>
                     </div>
                 </div>
@@ -148,22 +148,55 @@
         <!--------------------- PORTFOLIO --------------------->
         <section class="portfolio section" id="portfolio">
             <h2 class="section__title">Projects</h2>
-            <span class="section__subtitle">Most recent work</span>
+            <span class="section__subtitle">Recent work</span>
 
             <div class="portfolio__container container swiper-container">
                 <div class="swiper-wrapper">
+                    <!---------------------------- PORTFOLIO 0 ---------------------------->
+                    <div class="portfolio__content grid swiper-slide">
+                        <img src="assets/img/columnstore.webp" alt="" class="portfolio__img">
+
+                        <div class="portfolio__data">
+                            <h3 class="portfolio__title">Column-Store Database</h3>
+                            <p class="portfolio__description">
+                                Supports <strong>intermediate query plans</strong> (select-project-join) with
+                                <em>optimized lookups</em> and <em>storage</em>:
+                                <br><br>
+                                including <strong>B-trees</strong> for indexing and
+                                <strong>memory-mapped files</strong> for persistence, and
+                                <em>multi-threaded</em> and <em>cache-conscious</em>
+                                design for batch select processing. Built with <em>C</em> and <em>POSIX</em>.
+                                <br><br>
+                                <a href="http://daslab.seas.harvard.edu/classes/cs165/project.html" target="_blank"
+                                    rel="noopener noreferrer" class="project-link">Learn more about the project →</a>
+                            </p>
+                            <!-- <a href="https://github.com/Sam-Mucyo/AtTenDance"
+                                class="button button--flex button--small portfolio__button">
+                                Github Repo
+                                <i class="uil uil-arrow-right button__icon"></i>
+                            </a> -->
+                        </div>
+                    </div>
                     <!---------------------------- PORTFOLIO 1 ---------------------------->
                     <div class="portfolio__content grid swiper-slide">
                         <img src="assets/img/project1.png" alt="" class="portfolio__img">
 
                         <div class="portfolio__data">
                             <h3 class="portfolio__title">Attendance Web App</h3>
-                            <p class="portfolio__description">A Website app to mark attendance using facial recognition
-                                in real-time</p>
-                            <!--                                 <a href="https://github.com/Sam-Mucyo/AtTenDance" class="button button--flex button--small portfolio__button">
-                                    Demo
-                                    <i class="uil uil-arrow-right button__icon"></i>
-                                </a> -->
+                            <p class="portfolio__description">
+                                A <strong>real-time attendance tracking system</strong> powered by
+                                <strong>facial recognition technology</strong>, featuring:
+                                <br><br>
+                                <strong>Instant face detection and matching</strong> against a database of
+                                registered users and a
+                                <strong>reporting dashboard</strong> for attendance analytics. Built with
+                                <em>Flask</em>, <em>OpenCV</em>, and <em>SQLite</em>.
+                            </p>
+                            <!-- <a href="https://github.com/Sam-Mucyo/AtTenDance"
+                                class="button button--flex button--small portfolio__button">
+                                Github Repo
+                                <i class="uil uil-arrow-right button__icon"></i>
+                            </a> -->
                         </div>
                     </div>
 
@@ -174,12 +207,13 @@
                         <div class="portfolio__data">
                             <h3 class="portfolio__title">Facial Emotion Detector </h3>
                             <p class="portfolio__description">A program to detect facial expression of a person using
-                                Deepface Python Framework.
+                                Deepface Python Library.
                             </p>
-                            <!--                                 <a href="https://colab.research.google.com/drive/1Xgb4Z_09fAX5-N3No38ZEQBtOa3_xzi0?usp=sharing" class="button button--flex button--small portfolio__button">
-                                    Demo
-                                    <i class="uil uil-arrow-right button__icon"></i>
-                                </a> -->
+                            <!-- <a href="https://colab.research.google.com/drive/1Xgb4Z_09fAX5-N3No38ZEQBtOa3_xzi0?usp=sharing"
+                                class="button button--flex button--small portfolio__button">
+                                Google Colab
+                                <i class="uil uil-arrow-right button__icon"></i>
+                            </a> -->
                         </div>
                     </div>
 
@@ -190,11 +224,12 @@
                         <div class="portfolio__data">
                             <h3 class="portfolio__title">Handwritten Digit Recognition</h3>
                             <p class="portfolio__description">A program that uses neural networks to recognize
-                                handwritten digits. Used TensorFlow and MNIST Dataset to train the model.</p>
-                            <!--                                 <a href="https://colab.research.google.com/drive/1sA0vD_wb9hI7UDtWgV9ZkJceWbd_4WrA?usp=sharing" class="button button--flex button--small portfolio__button">
-                                    Demo
-                                    <i class="uil uil-arrow-right button__icon"></i>
-                                </a> -->
+                                handwritten digits. Used <em>TensorFlow</em> and MNIST Dataset to train the model.</p>
+                            <!-- <a href="https://colab.research.google.com/drive/1sA0vD_wb9hI7UDtWgV9ZkJceWbd_4WrA?usp=sharing"
+                                class="button button--flex button--small portfolio__button">
+                                Google Colab
+                                <i class="uil uil-arrow-right button__icon"></i>
+                            </a> -->
                         </div>
                     </div>
                     <!---------------------------- PORTFOLIO 4 ---------------------------->
@@ -204,11 +239,13 @@
                         <div class="portfolio__data">
                             <h3 class="portfolio__title">Flashcards iOS App</h3>
                             <p class="portfolio__description">An app that allows users to add and revise their own
-                                Flashcards.</p>
-                            <!--                               <a href="https://github.com/Sam-Mucyo/Flashcards" class="button button--flex button--small portfolio__button">
-                                  Demo
-                                  <i class="uil uil-arrow-right button__icon"></i>
-                              </a> -->
+                                Flashcards. Built with <em>Swift</em> and <em>Xcode</em>.
+                            </p>
+                            <!-- <a href="https://github.com/Sam-Mucyo/Flashcards"
+                                class="button button--flex button--small portfolio__button">
+                                Github Repo
+                                <i class="uil uil-arrow-right button__icon"></i>
+                            </a> -->
                         </div>
                     </div>
                 </div>
