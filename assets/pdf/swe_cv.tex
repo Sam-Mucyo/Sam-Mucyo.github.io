@@ -1,0 +1,108 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=2cm]{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+
+% Custom commands for consistent formatting
+\newcommand{\sectionheading}[1]{\vspace{0.2cm}\textbf{\Large #1}\vspace{0.1cm}\hrule\vspace{0.3cm}}
+\newcommand{\subheading}[1]{\textbf{#1}}
+\newcommand{\daterange}[1]{\hfill{#1}}
+
+% Remove page numbers
+\pagenumbering{gobble}
+
+\begin{document}
+
+\begin{center}
+    \textbf{\LARGE Samuel Mucyo}\\
+    \vspace{0.3cm}
+    sammucyo@college.harvard.edu \\
+    % https://sam-mucyo.github.io/
+    \href{https://sam-mucyo.github.io/}{sam-mucyo.github.io} \\
+\end{center}
+
+\sectionheading{OBJECTIVE}
+Software engineer with experience in distributed systems and high-performance computing. Demonstrated track record of building scalable solutions at Amazon across multiple teams, with particular expertise in backend development and cloud architecture. Strong academic foundation in computer science with interest and focus in data systems and parallel computing.
+
+\sectionheading{EDUCATION}
+\subheading{Harvard University}, Cambridge, MA \daterange{Graduation Date: May 2025}\\
+Bachelor of Arts in Computer Science\\
+% GPA: 3.68/4.0\\
+\textit{Relevant Coursework:} High-Performance Computing (CS2050), Data Systems (CS1650), Systems Programming \& Machine Organization (CS61), Data Structures \& Algorithms (CS1240), Systems Development (CS107), Machine Learning (CS1810), Data Science I (CS109A)
+
+\medbreak
+\subheading{Teaching Fellow, Introduction to Computer Science (CS50)}\\
+\textit{Harvard University} \daterange{Fall 2022 and Fall 2023}
+\begin{itemize}[leftmargin=*,nosep]
+    \item Conducted detailed code reviews for over 40 student projects and weekly problem sets through grading, providing feedback on code quality, memory management, and algorithm efficiency
+    \item Mentored students during 6 weekly office hours, focusing on debugging issues across multiple programming languages: C, Python, and JavaScript
+    \item Led weekly 2-hour hands-on lab sessions, covering topics such as introduction to data structures \& algorithms in C, and web development with Flask, HTML, CSS, and JavaScript
+\end{itemize}
+
+\sectionheading{EXPERIENCE}
+\subheading{Amazon} \hfill \textit{Seattle, WA}
+
+\textit{Software Development Engineer Intern at Amazon.com} \daterange{May 2024 - August 2024}
+\begin{itemize}[leftmargin=*,nosep]
+    \item Created a reusable A/B testing framework for dynamic profile badges using Java/Spring MVC, reducing similar A/B experiment deployment time from weeks to days
+    \item Improved API usage and accuracy by identifying and resolving misuse of the internal A/B API, which caused excessive triggers and signal noise; Conducted a statistical analysis to support the redesign
+\end{itemize}
+
+\medbreak
+\textit{Software Development Engineer Intern at Amazon.com} \daterange{May 2023 - August 2023}
+\begin{itemize}[leftmargin=*,nosep]
+    \item Architected APIs for a rule-based risk monitoring and alarming system to reduce fraudulent activity detection time by working collaboratively with software engineers, data engineers, and investigators
+    \item Developed a new Python-based backend with AWS CDK, enabling rapid and consistent deployments; leveraged AWS Lambda and DynamoDB for scalability and resource utilization
+\end{itemize}
+
+\medbreak
+\textit{Software Development Engineer Intern at AWS -- Redshift} \daterange{June 2022 - August 2022}
+\begin{itemize}[leftmargin=*,nosep]
+    \item Designed a serverless data lake using Python, AWS S3, and Glue to enhance bottleneck detection in Redshift infrastructure testing
+    \item Automated data pipeline integration with internal visualization tool to provide detailed insights, enabling fast, data-driven decisions
+\end{itemize}
+
+\sectionheading{PROJECTS}
+
+\subheading{Optimized Column-Store Database System}\\
+\textit{Individual Project: Data Systems (CS1650)} \daterange{Fall 2024}
+\begin{itemize}[leftmargin=*,nosep]
+    \item Developed a high-performance columnar database engine for efficient data retrieval and analysis (select-project-join) with optimized storage techniques, including B-trees for indexing and memory-mapped files for persistence
+    \item Optimized query execution and concurrency by implementing multi-threaded scan operators, achieving a top 3 placement in class benchmarks for index operation and skewed data handling
+    \item Implemented parallel batch select query execution using POSIX threads in C, with cache-conscious design and minimal data movement
+\end{itemize}
+
+\medbreak
+\subheading{Parallelizing Urban Transit Construction with Minimum Spanning Trees}\\
+\textit{Group Project: High Performance Computing for Science and Engineering (CS2050)} \daterange{Spring 2024}
+\begin{itemize}[leftmargin=*,nosep]
+    \item Collaborated in a team of five to implement parallel version of Kruskal's algorithm using OpenMP and OpenMPI for distributed computing, for final project
+    \item Conducted comprehensive performance analysis using PAPI for hardware counter measurements
+    \item Performed memory profiling using Valgrind's massif tool to optimize resource utilization
+    \item Automated strong and weak scaling analysis through parameterized bash scripts
+\end{itemize}
+\medbreak
+\subheading{Astrolibrary} \\
+\textit{Group Project: Systems Development for Computational Science (CS107)} \daterange{Fall 2023}
+\begin{itemize}[leftmargin=*,nosep]
+    \item Followed the Software Engineering Development Life Cycle to deliver a Python library for astronomical spectral analysis
+    \item Collaboratively designed API contracts, ensuring alignment with project requirements
+    \item Developed and tested core functionality, supplemented with a comprehensive test suite using \textit{pytest} for validation and documentation using \textit{Sphinx}, enabling ease of use and future maintainability
+    \item Integrated an automated CI/CD pipeline for seamless builds, testing, and deployment using GitHub Actions
+    \item Coordinated with team members through regular meetings, version control, and code reviews
+\end{itemize}
+
+
+\sectionheading{SKILLS}
+\begin{itemize}[leftmargin=*,nosep]
+    \item \textbf{HPC \& Systems Programming:} C, C++, POSIX threads, OpenMP, MPI, GDB, Valgrind
+    \item \textbf{Cloud \& Backend Development:} AWS (Lambda, S3, DynamoDB, CDK, Glue, Redshift), Java/Spring MVC, Python
+    \item \textbf{Data Engineering:} SQL, database design, data pipelines, ETL, AWS Glue
+    \item \textbf{Web Development:} JavaScript, React, Flask, HTML, CSS
+    \item \textbf{Development Tools:} Git, Linux/Unix environments, CI/CD (GitHub Actions), Bash
+    \item \textbf{Data Science \& ML:} R, TensorFlow, Pandas, statistical analysis
+\end{itemize}
+
+\end{document}
