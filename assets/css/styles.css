@@ -13,8 +13,9 @@
   --first-color-alt: hsl(var(--hue-color), 57%, 53%);
   --first-color-lighter: hsl(var(--hue-color), 92%, 85%);
   --title-color: hsl(var(--hue-color), 8%, 15%);
-  --text-color: hsl(var(--hue-color), 8%, 45%);
-  --text-color-light: hsl(var(--hue-color), 8%, 65%);
+  --text-color: hsl(var(--hue-color), 8%, 25%);
+  --text-color-light: hsl(var(--hue-color), 8%, 45%);
+  --highlight-color: hsl(230, 85%, 45%);
   --input-color: hsl(var(--hue-color), 70%, 96%);
   --body-color: hsl(var(--hue-color), 60%, 99%);
   --container-color: #FFF;
@@ -133,6 +134,16 @@ img {
 
 .project-link:hover {
     text-decoration: underline;
+}
+
+.highlight-text {
+    color: var(--highlight-color);
+    font-weight: var(--font-semi-bold);
+    transition: color 0.3s ease;
+}
+
+.highlight-text:hover {
+    color: hsl(230, 85%, 35%);
 }
 
 /*==================== REUSABLE CSS CLASSES ====================*/
