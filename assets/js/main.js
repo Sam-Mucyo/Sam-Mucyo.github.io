@@ -147,7 +147,10 @@ const themeButton = document.getElementById('theme-button')
 const darkTheme = 'dark-theme'
 const iconTheme = 'uil-sun'
 
-// Previously selected topic (if user selected)
+// Get system preference for dark mode
+const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)')
+
+// Previously selected theme (if user selected)
 const selectedTheme = localStorage.getItem('selected-theme')
 const selectedIcon = localStorage.getItem('selected-icon')
 
@@ -155,7 +158,15 @@ const selectedIcon = localStorage.getItem('selected-icon')
 const getCurrentTheme = () => document.body.classList.contains(darkTheme) ? 'dark' : 'light'
 const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'uil-moon' : 'uil-sun'
 
-
+function setTheme(isDark) {
+    if (isDark) {
+        document.body.classList.add(darkTheme)
+        themeButton.classList.remove(iconTheme)
+    } else {
+        document.body.classList.remove(darkTheme)
+        themeButton.classList.add(iconTheme)
+    }
+}
 
 function toggleTheme() {
     // Add or remove the dark / icon theme
@@ -166,7 +177,21 @@ function toggleTheme() {
     localStorage.setItem('selected-icon', getCurrentIcon())
 }
 
-toggleTheme()
+// Initialize theme
+if (selectedTheme) {
+    // If the user has explicitly chosen a theme, use it
+    setTheme(selectedTheme === 'dark')
+} else {
+    // Otherwise, respect system preference
+    setTheme(prefersDarkScheme.matches)
+}
+
+// Listen for system theme changes
+prefersDarkScheme.addEventListener('change', (e) => {
+    if (!selectedTheme) { // Only auto-switch if user hasn't explicitly chosen a theme
+        setTheme(e.matches)
+    }
+})
 
 // Activate / deactivate the theme manually with the button
 themeButton.addEventListener('click', () => {
