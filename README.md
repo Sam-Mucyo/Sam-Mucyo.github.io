@@ -1,4 +1,4 @@
-# Samuel Mucyo - Personal Portfolio
+# Personal Portfolio
 
 built with React and Material-UI.
 
