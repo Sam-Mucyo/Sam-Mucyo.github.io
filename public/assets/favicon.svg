@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background Circle -->
-  <circle cx="256" cy="256" r="256" fill="#4361EE"/>
-
-  <!-- Fancy Cursive SM -->
-  <path d="M155 170C155 170 175 150 205 150C235 150 245 170 245 190C245 230 155 250 155 290C155 330 185 350 215 350C245 350 265 330 265 330"
-        stroke="white" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
-
-  <path d="M275 150C275 150 275 250 275 290C275 330 295 350 325 350C355 350 375 330 375 290C375 250 325 210 325 170C325 150 335 130 355 130"
-        stroke="white" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
-
-  <!-- Decorative Flourish -->
-  <path d="M155 350C155 350 185 380 255 380C325 380 355 350 355 350"
-        stroke="white" stroke-width="12" stroke-linecap="round" stroke-opacity="0.5"/>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="32" height="32" rx="6" fill="#4169E1"/>
+    
+    <!-- Parallel Computing Grid -->
+    <g transform="translate(4, 4)">
+        <!-- Connected Nodes -->
+        <circle cx="6" cy="6" r="3" fill="white"/>
+        <circle cx="18" cy="6" r="3" fill="white"/>
+        <circle cx="6" cy="18" r="3" fill="white"/>
+        <circle cx="18" cy="18" r="3" fill="white"/>
+        
+        <!-- Connections -->
+        <line x1="6" y1="6" x2="18" y2="6" stroke="white" stroke-width="1.5"/>
+        <line x1="6" y1="18" x2="18" y2="18" stroke="white" stroke-width="1.5"/>
+        <line x1="6" y1="6" x2="6" y2="18" stroke="white" stroke-width="1.5"/>
+        <line x1="18" y1="6" x2="18" y2="18" stroke="white" stroke-width="1.5"/>
+        
+        <!-- Diagonal Connection -->
+        <line x1="6" y1="6" x2="18" y2="18" stroke="white" stroke-width="1.5"/>
+    </g>
 </svg>
