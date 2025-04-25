@@ -1,8 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Container, Typography, Box, Card, CardContent, Chip, IconButton, Button } from '@mui/material';
+import { Container, Typography, Box, Card, CardContent, Chip, Button } from '@mui/material';
 import { motion } from 'framer-motion';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import LaunchIcon from '@mui/icons-material/Launch';
 import { projectsConfig } from '../config/projects';
 
@@ -17,14 +15,6 @@ function Projects() {
             newState[index] = !newState[index];
             return newState;
         });
-    };
-
-    const handleScroll = (direction) => {
-        const container = scrollContainerRef.current;
-        if (container) {
-            const scrollAmount = direction === 'left' ? -400 : 400;
-            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        }
     };
 
     // auto-scroll projects carousel back and forth
@@ -63,28 +53,6 @@ function Projects() {
                         <Typography variant="h2" color="primary">
                             {projectsConfig.title}
                         </Typography>
-                        <Box sx={{ ml: 'auto', display: 'flex', gap: 1 }}>
-                            <IconButton
-                                onClick={() => handleScroll('left')}
-                                sx={{
-                                    backgroundColor: 'background.paper',
-                                    boxShadow: 1,
-                                    '&:hover': { backgroundColor: 'grey.100' },
-                                }}
-                            >
-                                <ArrowBackIcon />
-                            </IconButton>
-                            <IconButton
-                                onClick={() => handleScroll('right')}
-                                sx={{
-                                    backgroundColor: 'background.paper',
-                                    boxShadow: 1,
-                                    '&:hover': { backgroundColor: 'grey.100' },
-                                }}
-                            >
-                                <ArrowForwardIcon />
-                            </IconButton>
-                        </Box>
                     </Box>
 
                     <Box
