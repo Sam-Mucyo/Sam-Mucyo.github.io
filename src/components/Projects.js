@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { Container, Typography, Box, Card, CardContent, Chip, IconButton } from '@mui/material';
+import React, { useRef, useState } from 'react';
+import { Container, Typography, Box, Card, CardContent, Chip, IconButton, Button } from '@mui/material';
 import { motion } from 'framer-motion';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -7,6 +7,15 @@ import { projectsConfig } from '../config/projects';
 
 function Projects() {
     const scrollContainerRef = useRef(null);
+    const [expandedProjects, setExpandedProjects] = useState(Array(projectsConfig.projects.length).fill(false));
+
+    const toggleExpand = (index) => {
+        setExpandedProjects((prev) => {
+            const newState = [...prev];
+            newState[index] = !newState[index];
+            return newState;
+        });
+    };
 
     const handleScroll = (direction) => {
         const container = scrollContainerRef.current;
@@ -92,43 +101,55 @@ function Projects() {
                                         },
                                     }}
                                 >
-                                        <CardContent>
-                                            <Typography variant="h6" color="primary" gutterBottom>
-                                                {project.title}
-                                            </Typography>
-                                            <Typography variant="subtitle2" color="text.secondary" gutterBottom>
-                                                {project.category}
-                                            </Typography>
+                                    <CardContent>
+                                        <Typography variant="h6" color="primary" gutterBottom>
+                                            {project.title}
+                                        </Typography>
+                                        <Typography variant="subtitle2" color="text.secondary" gutterBottom>
+                                            {project.category}
+                                        </Typography>
+                                        <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', mb: expandedProjects[index] ? 2 : 1 }}>
                                             <Typography
                                                 variant="body1"
-                                                paragraph
+                                                component="span"
                                                 sx={{
-                                                    minHeight: '80px',
-                                                    display: '-webkit-box',
-                                                    WebkitLineClamp: 4,
+                                                    minHeight: expandedProjects[index] ? 'auto' : '80px',
+                                                    display: expandedProjects[index] ? 'block' : '-webkit-box',
+                                                    WebkitLineClamp: expandedProjects[index] ? 'none' : 4,
                                                     WebkitBoxOrient: 'vertical',
-                                                    overflow: 'hidden',
-                                                    textOverflow: 'ellipsis',
+                                                    overflow: expandedProjects[index] ? 'visible' : 'hidden',
+                                                    textOverflow: expandedProjects[index] ? 'unset' : 'ellipsis',
                                                 }}
                                             >
                                                 {project.description}
                                             </Typography>
-                                            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                                                {project.technologies.map((tech, i) => (
-                                                    <Chip
-                                                        key={i}
-                                                        label={tech}
-                                                        size="small"
-                                                        sx={{
-                                                            backgroundColor: 'primary.main',
-                                                            color: 'white',
-                                                        }}
-                                                    />
-                                                ))}
-                                            </Box>
-                                        </CardContent>
-                                    </Card>
-                                </motion.div>
+                                            {project.description.length > 100 && (
+                                                <Typography
+                                                    variant="body2"
+                                                    component="span"
+                                                    onClick={() => toggleExpand(index)}
+                                                    sx={{ color: 'primary.main', cursor: 'pointer', ml: 0.5, fontWeight: 'bold' }}
+                                                >
+                                                    {expandedProjects[index] ? 'Show Less' : 'Read More'}
+                                                </Typography>
+                                            )}
+                                        </Box>
+                                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                                            {project.technologies.map((tech, i) => (
+                                                <Chip
+                                                    key={i}
+                                                    label={tech}
+                                                    size="small"
+                                                    sx={{
+                                                        backgroundColor: 'primary.main',
+                                                        color: 'white',
+                                                    }}
+                                                />
+                                            ))}
+                                        </Box>
+                                    </CardContent>
+                                </Card>
+                            </motion.div>
                         ))}
                     </Box>
                 </motion.div>
