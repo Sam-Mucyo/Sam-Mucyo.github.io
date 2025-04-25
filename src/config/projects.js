@@ -2,7 +2,7 @@ export const projectsConfig = {
     title: 'Projects',
     projects: [
         {
-            title: 'Distributed Surround-Sound Player',
+            title: 'Surround-Sound Player',
             description:
                 'A peer-to-peer audio system that keeps multiple laptop “speakers” in sync without proprietary protocols. Designing gRPC/protobuf contract, CI/CD pipeline, and writing fault-tolerant code that prove seamless playback after node loss. Each client buffers tracks fetched from a lightweight server and adjusts audio timing to achieving ≤10 ms drift across Wi-Fi.',
             technologies: [
@@ -36,6 +36,21 @@ export const projectsConfig = {
                 'Built a C-based, in-memory columnar DBMS from scratch for faster analytical queries than a baseline row-store. Achieved this by integrating cache-aware storage layouts, secondary B-tree indexes, and zero-copy persistence via mmap, all orchestrated with fine-grained POSIX threads.',
             technologies: ['C', 'POSIX Threads', 'B-trees', 'mmap'],
             category: 'Systems Programming'
+        },
+        {
+            title: 'Chat App',
+            description:
+                'Co-designed a PyQt6 desktop chat client and Python server that supports two wire protocols (JSON + custom “SAMIRA” 🔥) and a 2-fault-tolerant replication layer. Built the custom protocol, gRPC server-to-server channel, and a Raft-inspired leader-election module for replication, automatic fail-over and dynamic replica add/remove.',
+            technologies: [
+                'Python',
+                'PyQt6',
+                'gRPC',
+                'Protobuf',
+                'Raft',
+                'GitHub Actions',
+                'Make'
+            ],
+            category: 'Distributed Systems'
         },
         {
             title: 'Parallel Transit-Network Optimizer',
