@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Container, Typography, Box, Card, CardContent, Chip, IconButton, Button } from '@mui/material';
 import { motion } from 'framer-motion';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -8,6 +8,7 @@ import { projectsConfig } from '../config/projects';
 function Projects() {
     const scrollContainerRef = useRef(null);
     const [expandedProjects, setExpandedProjects] = useState(Array(projectsConfig.projects.length).fill(false));
+    const pausedRef = useRef(false);
 
     const toggleExpand = (index) => {
         setExpandedProjects((prev) => {
@@ -24,6 +25,23 @@ function Projects() {
             container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         }
     };
+
+    // auto-scroll projects carousel back and forth
+    useEffect(() => {
+        const container = scrollContainerRef.current;
+        if (!container) return;
+        const speed = 1; // pixels per tick
+        let direction = 1; // 1: right, -1: left
+        const getMax = () => container.scrollWidth - container.clientWidth;
+        const step = () => {
+            if (pausedRef.current) return;
+            if (container.scrollLeft + speed * direction >= getMax()) direction = -1;
+            else if (container.scrollLeft + speed * direction <= 0) direction = 1;
+            container.scrollLeft += speed * direction;
+        };
+        const id = setInterval(step, 20);
+        return () => clearInterval(id);
+    }, []);
 
     return (
         <Box
@@ -87,6 +105,8 @@ function Projects() {
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8, delay: index * 0.1 }}
+                                onMouseEnter={() => { pausedRef.current = true; }}
+                                onMouseLeave={() => { pausedRef.current = false; }}
                             >
                                 <Card
                                     elevation={2}
