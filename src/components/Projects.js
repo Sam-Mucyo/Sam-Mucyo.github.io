@@ -3,6 +3,7 @@ import { Container, Typography, Box, Card, CardContent, Chip, IconButton, Button
 import { motion } from 'framer-motion';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import LaunchIcon from '@mui/icons-material/Launch';
 import { projectsConfig } from '../config/projects';
 
 function Projects() {
@@ -154,18 +155,28 @@ function Projects() {
                                                 </Typography>
                                             )}
                                         </Box>
-                                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, alignItems: 'center' }}>
                                             {project.technologies.map((tech, i) => (
                                                 <Chip
                                                     key={i}
                                                     label={tech}
                                                     size="small"
-                                                    sx={{
-                                                        backgroundColor: 'primary.main',
-                                                        color: 'white',
-                                                    }}
+                                                    sx={{ backgroundColor: 'primary.main', color: 'white' }}
                                                 />
                                             ))}
+                                            {project.link && (
+                                                <Button
+                                                    size="small"
+                                                    component="a"
+                                                    href={project.link}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    endIcon={<LaunchIcon />}
+                                                    sx={{ ml: 'auto' }}
+                                                >
+                                                    View Project
+                                                </Button>
+                                            )}
                                         </Box>
                                     </CardContent>
                                 </Card>

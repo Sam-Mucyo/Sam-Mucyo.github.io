@@ -13,7 +13,8 @@ export const projectsConfig = {
                 'Fault Torelance',
                 'CI/CD'
             ],
-            category: 'Distributed Systems & Music'
+            category: 'Distributed Systems & Music',
+            link: 'https://github.com/Sam-Mucyo/music262'
         },
         {
             title: 'Claude Yap – AI Podcast Generator',
@@ -28,14 +29,16 @@ export const projectsConfig = {
                 'FFmpeg',
                 'Node.js'
             ],
-            category: 'AI & Product Engineering - Hackathon'
+            category: 'AI & Product Engineering - Hackathon',
+            link: 'https://github.com/Nickanda/claude-yap'
         },
         {
             title: 'Optimized Column-Store Database',
             description:
                 'Built a C-based, in-memory columnar DBMS from scratch for faster analytical queries than a baseline row-store. Achieved this by integrating cache-aware storage layouts, secondary B-tree indexes, and zero-copy persistence via mmap, all orchestrated with fine-grained POSIX threads.',
             technologies: ['C', 'POSIX Threads', 'B-trees', 'mmap'],
-            category: 'Systems Programming'
+            category: 'Systems Programming',
+            link: 'https://github.com/Sam-Mucyo/column-store-db'
         },
         {
             title: 'Chat App',
@@ -50,23 +53,25 @@ export const projectsConfig = {
                 'GitHub Actions',
                 'Make'
             ],
-            category: 'Distributed Systems'
+            category: 'Distributed Systems',
+            link: 'https://github.com/mirabor/cs262-chat'
         },
         {
             title: 'Parallel Transit-Network Optimizer',
             description:
                 'Setup HPC infrastructure and performance benchmarking for a 32 768-vertex Kruskal MST study on urban-transit graphs. Automated SLURM + Bash pipelines, PAPI metrics, and Valgrind memory profiling; produced strong/weak-scaling dashboards that revealed an 18 × speed-up on 64 CPUs and ≈ 40 % weak-scaling efficiency. Contributed to algorithm-design (MPI edge partitioning, OpenMP Hyper-QuickSort, helper-thread pruning).',
             technologies: ['C++', 'OpenMP', 'MPI', 'PAPI', 'Valgrind', 'SLURM'],
-            category: 'High-Performance Computing'
+            category: 'High-Performance Computing',
+            link: ''
         },
         {
             title: 'Astrolibrary',
             description:
                 'Co-developed a Python package for stellar spectral reduction and feature extraction. Drove CI/CD with GitHub Actions, pytest coverage, and Sphinx documentation.',
             technologies: ['Python', 'pytest', 'Sphinx', 'GitHub Actions'],
-            category: 'Scientific Computing'
+            category: 'Scientific Computing',
+            link: ''
         },
 
     ]
 };
-
