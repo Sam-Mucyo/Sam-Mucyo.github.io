@@ -36,3 +36,9 @@ npm run build
 - `/public/` - Static assets
 - `/src/App.js` - Main application component
 - `/src/index.js` - Application entry point
+
+## Contact Card
+
+`/public/contacts/` is a standalone static page (plain HTML/CSS/JS) served at
+`sammucyo.com/contacts/`. CRA copies it into the build as-is, so it doesn't go
+through React. It replaces the old `Sam-Mucyo/contacts` repo.
