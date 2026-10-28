@@ -1,0 +1,46 @@
+---
+import Icon from './Icon.astro';
+---
+
+<a href="#" class="to-top" data-to-top aria-label="Scroll back to top">
+    <Icon name="arrowUp" />
+</a>
+
+<style>
+    .to-top {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--primary);
+        color: #fff;
+        box-shadow: var(--shadow-3);
+        transform: scale(0);
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .to-top.is-visible {
+        transform: scale(1);
+    }
+
+    .to-top.is-visible:hover {
+        transform: translateY(-4px);
+    }
+</style>
+
+<script>
+    const button = document.querySelector<HTMLElement>('[data-to-top]')!;
+    const update = () => button.classList.toggle('is-visible', window.scrollY > 300);
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>

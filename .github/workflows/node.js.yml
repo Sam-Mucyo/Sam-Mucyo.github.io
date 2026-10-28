@@ -1,10 +1,11 @@
-# This workflow will build and deploy a Node.js project to GitHub Pages
+# Builds the Astro site on every PR and push; deploys to GitHub Pages from main.
 
-name: Node.js CI and GitHub Pages Deploy
+name: Build and Deploy to GitHub Pages
 
 on:
   push:
     branches: ["main"]
+  pull_request:
   # Allows to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -16,40 +17,37 @@ permissions:
 
 # Allow one concurrent deployment
 concurrency:
-  group: "pages"
+  group: "pages-${{ github.ref }}"
   cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18.x]
-
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 22
           cache: "npm"
       - name: Install dependencies
         run: npm ci
+      - name: Check
+        run: npm run check
       - name: Build
         run: npm run build
-        env:
-          CI: false # This prevents the build from failing on warnings
       - name: Setup Pages
+        if: github.event_name != 'pull_request'
         uses: actions/configure-pages@v4
       - name: Upload artifact
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
-          # Output directory for Create React App
-          path: "./build"
+          path: "./dist"
 
   # Deployment job
   deploy:
+    if: github.event_name != 'pull_request'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

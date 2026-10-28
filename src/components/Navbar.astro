@@ -1,0 +1,330 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import logo from '../assets/logo.png';
+import { nav, person } from '../data/site';
+
+// Root-relative hash links work from every page: on / they just scroll,
+// elsewhere (e.g. /contacts) they navigate home first.
+const href = (id: string) => `/#${id}`;
+---
+
+<header class="navbar" data-navbar>
+    <div class="container navbar__inner">
+        <a href="/" class="navbar__logo" aria-label={`${person.name} – home`}>
+            <Image src={logo} alt="" height={40} densities={[1, 2]} loading="eager" />
+        </a>
+
+        <nav class="navbar__links" aria-label="Main">
+            {nav.map((item) => <a href={href(item.id)} data-nav-link={item.id}>{item.label}</a>)}
+        </nav>
+
+        <div class="navbar__actions">
+            <button type="button" class="icon-btn theme-toggle" data-theme-toggle aria-label="Toggle theme">
+                <Icon name="dark" class="theme-toggle__dark" />
+                <Icon name="light" class="theme-toggle__light" />
+            </button>
+            <button
+                type="button"
+                class="icon-btn navbar__menu"
+                aria-label="Open menu"
+                aria-controls="drawer"
+                aria-expanded="false"
+                data-drawer-open
+            >
+                <Icon name="menu" />
+            </button>
+        </div>
+    </div>
+</header>
+
+<div class="drawer" id="drawer" data-drawer hidden>
+    <div class="drawer__backdrop" data-drawer-close></div>
+    <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="Menu">
+        <div class="drawer__header">
+            <a href="/" class="drawer__brand">
+                <Image src={logo} alt="" height={40} densities={[1, 2]} />
+                <span>{person.fullName}</span>
+            </a>
+            <button type="button" class="icon-btn drawer__close" aria-label="Close menu" data-drawer-close>
+                <Icon name="close" />
+            </button>
+        </div>
+        <hr />
+        <nav class="drawer__links" aria-label="Mobile">
+            {nav.map((item) => <a href={href(item.id)} data-drawer-close>{item.label}</a>)}
+            <button type="button" class="drawer__theme" data-theme-toggle>
+                <Icon name="dark" class="theme-toggle__dark" />
+                <Icon name="light" class="theme-toggle__light" />
+                <span data-theme-label>Toggle theme</span>
+            </button>
+        </nav>
+    </div>
+</div>
+
+<style>
+    .navbar {
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 100;
+        border-bottom: 1px solid transparent;
+        transition: background-color 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
+        animation: slide-down 0.5s ease both;
+    }
+
+    .navbar.is-scrolled {
+        background: var(--nav-bg);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom-color: var(--divider);
+    }
+
+    @keyframes slide-down {
+        from {
+            transform: translateY(-100%);
+        }
+    }
+
+    .navbar__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 64px;
+        padding-block: 8px;
+    }
+
+    @media (min-width: 900px) {
+        .navbar__inner {
+            min-height: var(--nav-height);
+            padding-block: 12px;
+        }
+    }
+
+    .navbar__logo :global(img) {
+        height: 30px;
+        width: auto;
+        transition: transform 0.3s ease;
+    }
+
+    .navbar__logo:hover :global(img) {
+        transform: scale(1.05);
+    }
+
+    @media (min-width: 900px) {
+        .navbar__logo :global(img) {
+            height: 40px;
+        }
+    }
+
+    .navbar__links {
+        display: none;
+        gap: 4px;
+        margin-left: auto;
+    }
+
+    @media (min-width: 900px) {
+        .navbar__links {
+            display: flex;
+        }
+    }
+
+    .navbar__links a {
+        position: relative;
+        padding: 6px 16px;
+        border-radius: var(--radius);
+        color: var(--primary);
+        font-weight: 500;
+        text-decoration: none;
+        transition: background-color 0.2s ease;
+    }
+
+    .navbar__links a:hover {
+        background: rgba(67, 97, 238, 0.06);
+    }
+
+    .navbar__links a::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 3px;
+        border-radius: 3px;
+        background: var(--primary);
+        transition: width 0.3s ease-in-out;
+    }
+
+    .navbar__links a:hover::after,
+    .navbar__links a.is-active::after {
+        width: 100%;
+    }
+
+    .navbar__actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    @media (min-width: 900px) {
+        .navbar__actions {
+            margin-left: 16px;
+        }
+
+        .navbar__menu {
+            display: none;
+        }
+    }
+
+    .drawer {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+    }
+
+    .drawer[hidden] {
+        display: none;
+    }
+
+    .drawer__backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        animation: fade-in 0.2s ease both;
+    }
+
+    .drawer__panel {
+        position: absolute;
+        inset: 0 0 0 auto;
+        width: 100%;
+        max-width: 300px;
+        background: var(--bg);
+        box-shadow: var(--shadow-3);
+        animation: slide-in 0.25s ease both;
+        overflow-y: auto;
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+        }
+    }
+
+    @keyframes slide-in {
+        from {
+            transform: translateX(100%);
+        }
+    }
+
+    .drawer__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px;
+    }
+
+    .drawer__brand {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        color: var(--text);
+        font-weight: 600;
+        font-size: 1.1rem;
+        text-decoration: none;
+    }
+
+    .drawer__brand :global(img) {
+        height: 40px;
+        width: auto;
+    }
+
+    .drawer__close {
+        background: transparent;
+        color: var(--text-muted);
+    }
+
+    .drawer hr {
+        margin: 0 0 16px;
+        border: 0;
+        border-top: 1px solid var(--divider);
+    }
+
+    .drawer__links {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 0 16px;
+    }
+
+    .drawer__links a,
+    .drawer__theme {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 8px 16px;
+        border-radius: 8px;
+        color: var(--text);
+        font: inherit;
+        font-weight: 500;
+        text-align: left;
+        text-decoration: none;
+        transition: background-color 0.2s ease;
+    }
+
+    .drawer__links a:hover {
+        background: rgba(67, 97, 238, 0.1);
+    }
+
+    .drawer__theme {
+        margin-top: 16px;
+        border: 0;
+        background: rgba(67, 97, 238, 0.1);
+        cursor: pointer;
+    }
+
+    .drawer__theme:hover {
+        background: rgba(67, 97, 238, 0.2);
+    }
+
+    .drawer__theme :global(.icon) {
+        color: var(--primary);
+    }
+</style>
+
+<script>
+    const navbar = document.querySelector<HTMLElement>('[data-navbar]')!;
+    const onScroll = () => navbar.classList.toggle('is-scrolled', window.scrollY > 60);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Mobile drawer.
+    const drawer = document.querySelector<HTMLElement>('[data-drawer]')!;
+    const openBtn = document.querySelector<HTMLElement>('[data-drawer-open]')!;
+    const setOpen = (open: boolean) => {
+        drawer.hidden = !open;
+        openBtn.setAttribute('aria-expanded', String(open));
+        document.body.style.overflow = open ? 'hidden' : '';
+    };
+    openBtn.addEventListener('click', () => setOpen(true));
+    drawer.querySelectorAll('[data-drawer-close]').forEach((el) => el.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !drawer.hidden) setOpen(false);
+    });
+
+    // Underline the link for the section currently in view (home page only).
+    const links = document.querySelectorAll<HTMLElement>('[data-nav-link]');
+    const sections = [...links]
+        .map((link) => document.getElementById(link.dataset.navLink!))
+        .filter((s): s is HTMLElement => s !== null);
+    if (sections.length) {
+        const spy = new IntersectionObserver(
+            (entries) => {
+                for (const entry of entries) {
+                    if (!entry.isIntersecting) continue;
+                    links.forEach((l) => l.classList.toggle('is-active', l.dataset.navLink === entry.target.id));
+                }
+            },
+            { rootMargin: '-45% 0px -50% 0px' },
+        );
+        sections.forEach((s) => spy.observe(s));
+    }
+</script>

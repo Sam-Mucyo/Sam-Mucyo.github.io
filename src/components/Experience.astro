@@ -1,0 +1,338 @@
+---
+import Icon from './Icon.astro';
+import { experiences, experienceTitle } from '../data/experience';
+---
+
+<section id="experience" class="section experience">
+    <div class="experience__glow experience__glow--a" aria-hidden="true"></div>
+    <div class="experience__glow experience__glow--b" aria-hidden="true"></div>
+
+    <div class="container experience__inner">
+        <h2 class="section-title experience__title" data-reveal>{experienceTitle}</h2>
+
+        <ol class="experience__list">
+            {
+                experiences.map((exp, i) => (
+                    <li data-reveal style={`--reveal-delay:${i * 0.1}s`}>
+                        <article class="job">
+                            <div class="job__meta">
+                                <span class="job__icon">
+                                    <Icon name={exp.type} />
+                                </span>
+                                <div>
+                                    <p class="job__period">{exp.period}</p>
+                                    <p class="job__location">{exp.location}</p>
+                                </div>
+                            </div>
+
+                            <div class="job__body">
+                                <div class="job__heading">
+                                    <h3 class="job__title">{exp.title}</h3>
+                                    <a
+                                        class="job__link"
+                                        href={exp.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        title="Visit company website"
+                                        aria-label={`${exp.company} website`}
+                                    >
+                                        <Icon name="link" />
+                                    </a>
+                                </div>
+                                <p class="job__company">{exp.company}</p>
+
+                                {/* `name` makes these an exclusive accordion: opening one closes the rest. */}
+                                <details class="job__details" name="experience">
+                                    <summary>
+                                        <span class="job__summary">{exp.summary}</span>
+                                        <span class="job__toggle chip" aria-hidden="true" />
+                                    </summary>
+                                    <ul class="job__points">
+                                        {exp.description.map((point) => (
+                                            <li>{point}</li>
+                                        ))}
+                                    </ul>
+                                    <hr />
+                                    <p class="job__skills-label">Skills &amp; Technologies:</p>
+                                    <div class="job__skills">
+                                        {exp.skills.map((skill) => (
+                                            <span class="chip chip--soft">{skill}</span>
+                                        ))}
+                                    </div>
+                                </details>
+                            </div>
+                        </article>
+                    </li>
+                ))
+            }
+        </ol>
+    </div>
+</section>
+
+<style>
+    .experience {
+        position: relative;
+        overflow: hidden;
+        background: var(--paper);
+    }
+
+    @media (min-width: 900px) {
+        .experience {
+            padding: 96px 0;
+        }
+    }
+
+    .experience__glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+    }
+
+    .experience__glow--a {
+        top: -100px;
+        right: -100px;
+        width: 300px;
+        height: 300px;
+        background: rgba(67, 97, 238, 0.05);
+    }
+
+    .experience__glow--b {
+        bottom: -50px;
+        left: -50px;
+        width: 200px;
+        height: 200px;
+        background: rgba(247, 37, 133, 0.05);
+    }
+
+    .experience__inner {
+        position: relative;
+    }
+
+    .experience__title {
+        position: relative;
+        display: block;
+        width: fit-content;
+        margin: 0 auto 48px;
+    }
+
+    @media (min-width: 900px) {
+        .experience__title {
+            margin-left: 0;
+        }
+    }
+
+    .experience__title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40%;
+        height: 4px;
+        border-radius: 4px;
+        background: linear-gradient(90deg, #4361ee, transparent);
+    }
+
+    .experience__list {
+        display: grid;
+        gap: 32px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .job {
+        display: grid;
+        gap: 16px;
+        padding: 16px;
+        border: 1px solid var(--divider);
+        border-radius: 24px;
+        background: var(--paper);
+        transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    @media (min-width: 900px) {
+        .job {
+            grid-template-columns: 1fr 3fr;
+            gap: 24px;
+            padding: 24px;
+        }
+    }
+
+    .job:hover {
+        box-shadow: var(--shadow-3);
+        transform: translateY(-4px);
+        border-color: rgba(67, 97, 238, 0.3);
+    }
+
+    .job__meta {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    @media (min-width: 900px) {
+        .job__meta {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+
+    .job__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        flex: none;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+    }
+
+    .job__period {
+        margin-bottom: 4px;
+        color: var(--text-muted);
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+
+    .job__location {
+        color: var(--text-muted);
+        font-size: 0.875rem;
+    }
+
+    .job__heading {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+
+    .job__title {
+        color: var(--text);
+        font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+        font-weight: 600;
+        line-height: 1.334;
+    }
+
+    .job__link {
+        display: inline-flex;
+        padding: 5px;
+        border-radius: 50%;
+        color: var(--primary);
+        transition: background-color 0.2s ease;
+    }
+
+    .job__link:hover {
+        background: rgba(67, 97, 238, 0.08);
+    }
+
+    .job__link :global(.icon) {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+
+    .job__company {
+        margin-bottom: 16px;
+        color: var(--primary);
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
+
+    .job__details summary {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        cursor: pointer;
+        list-style: none;
+    }
+
+    @media (max-width: 599px) {
+        .job__details summary {
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+        }
+
+        .job__summary {
+            align-self: stretch;
+        }
+    }
+
+    .job__details summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .job__summary {
+        flex: 1;
+        margin-bottom: 8px;
+        color: var(--text-muted);
+        font-size: 1.125rem;
+    }
+
+    .job__details[open] .job__summary {
+        visibility: hidden;
+        height: 0;
+        margin: 0;
+    }
+
+    .job__details[open] summary {
+        justify-content: flex-end;
+    }
+
+    .job__toggle {
+        flex: none;
+        padding: 2px 16px;
+        border: 1px solid var(--primary);
+        color: var(--primary);
+        white-space: nowrap;
+    }
+
+    .job__toggle::before {
+        content: 'Show more';
+    }
+
+    .job__details[open] .job__toggle::before {
+        content: 'Show less';
+    }
+
+    .job__details summary:hover .job__toggle {
+        background: rgba(67, 97, 238, 0.06);
+    }
+
+    .job__points {
+        margin: 16px 0 0;
+        padding-left: 16px;
+    }
+
+    .job__points li {
+        margin-bottom: 12px;
+        color: var(--text-muted);
+        font-size: 1.125rem;
+    }
+
+    .job__points li::marker {
+        color: var(--primary);
+    }
+
+    .job__details hr {
+        margin: 24px 0 16px;
+        border: 0;
+        border-top: 1px solid var(--divider);
+    }
+
+    .job__skills-label {
+        margin-bottom: 8px;
+        color: var(--text-muted);
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    .job__skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+</style>
