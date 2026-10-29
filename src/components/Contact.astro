@@ -1,0 +1,59 @@
+---
+import Icon from './Icon.astro';
+import { contact, links, person } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<section id="contact" class="section contact">
+    <div class="container" data-reveal>
+        <h2 class="section-title">{contact.title}</h2>
+        <p class="contact__description">{contact.description}</p>
+
+        <div class="contact__buttons">
+            <a class="btn btn--contained btn--large" href={links.email}>
+                <Icon name="email" /> Email Me
+            </a>
+            <a class="btn btn--outlined btn--large" href={links.github} target="_blank" rel="noopener noreferrer">
+                <Icon name="github" /> GitHub Profile
+            </a>
+            <a class="btn btn--outlined btn--large" href={links.linkedin} target="_blank" rel="noopener noreferrer">
+                <Icon name="linkedin" /> LinkedIn Profile
+            </a>
+            <a class="btn btn--outlined btn--large" href="/contacts/">
+                <Icon name="calendar" /> Contact Card &amp; Scheduling
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">© {year} {person.fullName}. All rights reserved.</div>
+</footer>
+
+<style>
+    .contact {
+        background: var(--bg);
+    }
+
+    .contact__description {
+        max-width: 600px;
+        margin-bottom: 32px;
+        font-size: 1.125rem;
+    }
+
+    .contact__buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        max-width: 560px;
+    }
+
+    .footer {
+        padding: 24px 0;
+        background: var(--paper);
+        color: var(--text-muted);
+        font-size: 0.875rem;
+        text-align: center;
+    }
+</style>

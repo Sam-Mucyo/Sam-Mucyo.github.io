@@ -1,0 +1,180 @@
+---
+import Icon from './Icon.astro';
+import { projects, projectsTitle } from '../data/projects';
+---
+
+<section id="projects" class="section">
+    <div class="container" data-reveal>
+        <h2 class="section-title">{projectsTitle}</h2>
+
+        <div class="carousel" data-carousel>
+            {
+                projects.map((project) => (
+                    <article class="card project">
+                        <h3 class="project__title">{project.title}</h3>
+                        <p class="project__category">{project.category}</p>
+                        <div class="project__description">
+                            <p class="project__text" data-clamp>
+                                {project.description}
+                            </p>
+                            {project.description.length > 100 && (
+                                <button type="button" class="project__more" data-more aria-expanded="false">
+                                    Read More
+                                </button>
+                            )}
+                        </div>
+                        <div class="project__footer">
+                            {project.technologies.map((tech) => (
+                                <span class="chip chip--filled">{tech}</span>
+                            ))}
+                            {project.link && (
+                                <a
+                                    class="btn btn--text project__link"
+                                    href={project.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    View Project <Icon name="launch" />
+                                </a>
+                            )}
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .section {
+        background: var(--bg);
+    }
+
+    .section-title {
+        margin-bottom: 24px;
+    }
+
+    .carousel {
+        display: flex;
+        gap: 24px;
+        padding: 8px 0 16px;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .carousel::-webkit-scrollbar {
+        display: none;
+    }
+
+    .project {
+        flex: 0 0 auto;
+        width: 300px;
+        padding: 16px;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    @media (min-width: 600px) {
+        .project {
+            width: 350px;
+        }
+    }
+
+    .project:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-3);
+    }
+
+    .project__title {
+        margin-bottom: 6px;
+        color: var(--primary);
+        font-size: 1.25rem;
+        font-weight: 500;
+        line-height: 1.6;
+    }
+
+    .project__category {
+        margin-bottom: 6px;
+        color: var(--text-muted);
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    .project__description {
+        margin-bottom: 8px;
+    }
+
+    .project__text {
+        display: -webkit-box;
+        min-height: 80px;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+        line-clamp: 4;
+        font-size: 1.125rem;
+    }
+
+    .project__text.is-expanded {
+        display: block;
+        min-height: 0;
+        -webkit-line-clamp: none;
+        line-clamp: none;
+    }
+
+    .project__more {
+        padding: 0;
+        border: 0;
+        background: none;
+        color: var(--primary);
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .project__footer {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .project__link {
+        margin-left: auto;
+    }
+</style>
+
+<script>
+    // "Read More" toggles per card.
+    document.querySelectorAll<HTMLButtonElement>('[data-more]').forEach((btn) => {
+        const text = btn.parentElement!.querySelector('[data-clamp]')!;
+        btn.addEventListener('click', () => {
+            const expanded = text.classList.toggle('is-expanded');
+            btn.textContent = expanded ? 'Show Less' : 'Read More';
+            btn.setAttribute('aria-expanded', String(expanded));
+        });
+    });
+
+    // Auto-scroll the carousel back and forth; pause while the pointer or
+    // keyboard focus is inside it, and skip it entirely for reduced motion.
+    const carousel = document.querySelector<HTMLElement>('[data-carousel]');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (carousel && !reduceMotion) {
+        let paused = false;
+        let direction = 1;
+        const pause = () => (paused = true);
+        const resume = () => (paused = false);
+        carousel.addEventListener('mouseenter', pause);
+        carousel.addEventListener('mouseleave', resume);
+        carousel.addEventListener('focusin', pause);
+        carousel.addEventListener('focusout', resume);
+        carousel.addEventListener('touchstart', pause, { passive: true });
+        carousel.addEventListener('touchend', () => setTimeout(resume, 3000), { passive: true });
+
+        setInterval(() => {
+            if (paused) return;
+            const max = carousel.scrollWidth - carousel.clientWidth;
+            if (carousel.scrollLeft + direction >= max) direction = -1;
+            else if (carousel.scrollLeft + direction <= 0) direction = 1;
+            carousel.scrollLeft += direction;
+        }, 20);
+    }
+</script>

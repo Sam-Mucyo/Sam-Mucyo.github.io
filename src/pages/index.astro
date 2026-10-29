@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Experience from '../components/Experience.astro';
+import Projects from '../components/Projects.astro';
+import Skills from '../components/Skills.astro';
+import Contact from '../components/Contact.astro';
+import { person } from '../data/site';
+---
+
+<Base title={person.name} description={`${person.fullName} – ${person.role}. Experience, projects, and how to get in touch.`}>
+    <Hero />
+    <Experience />
+    <Projects />
+    <Skills />
+    <Contact />
+</Base>

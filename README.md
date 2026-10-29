@@ -1,44 +1,38 @@
-# Personal Portfolio
+# sammucyo.com
 
-built with React and Material-UI.
+Personal site, built with [Astro](https://astro.build) and deployed to GitHub
+Pages by `.github/workflows/node.js.yml` on every push to `main`. Pull requests
+get a build check but don't deploy.
 
 ## Getting Started
 
-1. Install dependencies:
+Requires Node 22.
 
 ```bash
 npm install
+npm run dev      # http://localhost:4321
+npm run build    # static output in dist/
+npm run preview  # serve dist/ locally
+npm run check    # type-check .astro and .ts files
 ```
 
-2. Start the development server:
+## Pages
 
-```bash
-npm start
-```
+| URL | Source | What it is |
+|---|---|---|
+| `/` | `src/pages/index.astro` | Full site: experience, projects, skills, contact |
+| `/contacts/` | `src/pages/contacts.astro` | Short contact card with scheduling, linked from the full site |
 
-3. Build for production:
+Both pages share `src/layouts/Base.astro` (head, SEO tags, navbar, theme) and
+`src/styles/global.css` (design tokens, buttons, chips, cards).
 
-```bash
-npm run build
-```
+## Editing content
 
-## Technologies Used
+Content lives in `src/data/`, not in the components:
 
-- React
-- Material-UI
-- Framer Motion
-- React Scroll
-- Emotion (for styled components)
+- `site.ts`: name, role, contact links, nav, hero and card text. Shared by both
+  pages, so a link changed here changes everywhere.
+- `experience.ts`, `projects.ts`, `skills.ts`: the sections of the full site.
 
-## Project Structure
-
-- `/src/components/` - React components
-- `/public/` - Static assets
-- `/src/App.js` - Main application component
-- `/src/index.js` - Application entry point
-
-## Contact Card
-
-`/public/contacts/` is a standalone static page (plain HTML/CSS/JS) served at
-`sammucyo.com/contacts/`. CRA copies it into the build as-is, so it doesn't go
-through React. It replaces the old `Sam-Mucyo/contacts` repo.
+Images in `src/assets/` are optimised at build time. Favicons and other files
+served as-is live in `public/`.

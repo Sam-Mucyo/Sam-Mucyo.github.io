@@ -1,0 +1,306 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import photo from '../assets/photo.png';
+import { hero, links, person } from '../data/site';
+
+// Soft background blobs. Fixed values (the old site randomised them on every
+// load) so the static HTML is the same on every visit.
+const blobs = [
+    { size: 220, top: 8, left: 12, opacity: 0.06, delay: 0 },
+    { size: 140, top: 62, left: 6, opacity: 0.05, delay: 0.4 },
+    { size: 250, top: 18, left: 70, opacity: 0.07, delay: 0.8 },
+    { size: 90, top: 78, left: 48, opacity: 0.05, delay: 1.2 },
+    { size: 180, top: 45, left: 88, opacity: 0.04, delay: 0.6 },
+    { size: 120, top: 4, left: 46, opacity: 0.05, delay: 1 },
+];
+---
+
+<section id="home" class="hero">
+    <div class="hero__blobs" aria-hidden="true">
+        {
+            blobs.map((b) => (
+                <span
+                    class="hero__blob"
+                    style={`width:${b.size}px;height:${b.size}px;top:${b.top}%;left:${b.left}%;opacity:${b.opacity};animation-delay:-${b.delay}s`}
+                />
+            ))
+        }
+    </div>
+
+    <div class="container hero__grid">
+        <div class="hero__text">
+            <h1 class="hero__name stagger" style="--i:0">{person.name}</h1>
+            <p class="hero__description stagger" style="--i:1" set:html={hero.description} />
+            <div class="hero__buttons stagger" style="--i:2">
+                <a class="btn btn--contained btn--large btn--shine" href="#contact">Get in Touch</a>
+                <a class="btn btn--outlined btn--large" href={links.github} target="_blank" rel="noopener noreferrer">
+                    View GitHub
+                </a>
+            </div>
+        </div>
+
+        <div class="hero__photo">
+            <Image src={photo} alt={person.name} widths={[455, 910]} sizes="(min-width: 900px) 455px, 0px" loading="eager" />
+        </div>
+    </div>
+
+    <a href="#experience" class="scroll-hint" data-scroll-hint aria-label="Scroll down to Experience">
+        <span>Scroll down</span>
+        <span class="scroll-hint__button"><Icon name="arrowDown" /></span>
+    </a>
+</section>
+
+<style>
+    .hero {
+        position: relative;
+        min-height: 100vh;
+        min-height: 100svh;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        background: var(--hero-bg);
+        padding: 80px 0;
+    }
+
+    @media (min-width: 900px) {
+        .hero {
+            padding: 96px 0;
+        }
+    }
+
+    .hero__blobs {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+    }
+
+    .hero__blob {
+        position: absolute;
+        border-radius: 50%;
+        background: var(--blob);
+        filter: blur(40px);
+        animation: float 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes float {
+        from {
+            transform: translateY(-10px);
+        }
+        to {
+            transform: translateY(10px);
+        }
+    }
+
+    .hero__grid {
+        position: relative;
+        display: grid;
+        gap: 32px;
+        align-items: center;
+    }
+
+    @media (min-width: 900px) {
+        .hero__grid {
+            grid-template-columns: 7fr 5fr;
+        }
+    }
+
+    .stagger {
+        animation: rise 0.6s ease both;
+        animation-delay: calc(0.3s + var(--i) * 0.2s);
+    }
+
+    @keyframes rise {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+    }
+
+    .hero__name {
+        margin-bottom: 16px;
+        font-size: clamp(2.2rem, 1.5rem + 2.6vw, 3.5rem);
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        line-height: 1.2;
+        background: var(--hero-name);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        width: fit-content;
+    }
+
+    .hero__description {
+        max-width: 600px;
+        margin-bottom: 32px;
+        color: var(--text-muted);
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    @media (min-width: 900px) {
+        .hero__description {
+            font-size: 1rem;
+        }
+    }
+
+    .hero__description :global(a) {
+        color: var(--primary);
+        font-weight: 600;
+        text-decoration: none;
+        border-bottom: 2px dotted var(--primary);
+        transition: opacity 0.2s ease;
+    }
+
+    .hero__description :global(a:hover) {
+        opacity: 0.8;
+        border-bottom-style: solid;
+    }
+
+    .hero__buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    @media (min-width: 600px) {
+        .hero__buttons {
+            flex-wrap: nowrap;
+        }
+    }
+
+    .btn--shine {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn--shine::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%);
+        transform: translateX(-100%);
+    }
+
+    .btn--shine:hover::after {
+        transform: translateX(100%);
+        transition: transform 0.6s ease-in-out;
+    }
+
+    .hero__photo {
+        display: none;
+    }
+
+    @media (min-width: 900px) {
+        .hero__photo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 450px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--hero-photo-bg);
+            animation: pop 0.8s ease 0.5s both;
+        }
+    }
+
+    @keyframes pop {
+        from {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+    }
+
+    .hero__photo :global(img) {
+        width: 90%;
+        height: 90%;
+        object-fit: contain;
+        filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.15));
+        transform: scale(1.05);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .hero__photo :global(img:hover) {
+        transform: scale(1.08);
+    }
+
+    .scroll-hint {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        color: var(--text-muted);
+        font-size: 0.8rem;
+        font-weight: 500;
+        text-decoration: none;
+        transform: translateX(-50%);
+        animation: hint-in 0.5s ease 1.5s both;
+        transition: opacity 0.3s ease;
+    }
+
+    @media (min-width: 900px) {
+        .scroll-hint {
+            bottom: 40px;
+        }
+    }
+
+    .scroll-hint.is-hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    @keyframes hint-in {
+        from {
+            opacity: 0;
+            translate: 0 -20px;
+        }
+    }
+
+    .scroll-hint > span:first-child {
+        opacity: 0.8;
+    }
+
+    .scroll-hint__button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 2px solid var(--divider);
+        background: var(--paper);
+        color: var(--primary);
+        box-shadow: var(--shadow-2);
+        animation: bounce 1.5s ease-in-out infinite;
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .scroll-hint:hover .scroll-hint__button {
+        background: var(--primary);
+        color: #fff;
+    }
+
+    @keyframes bounce {
+        50% {
+            transform: translateY(10px);
+        }
+    }
+</style>
+
+<script>
+    // Hide the scroll hint once the visitor has scrolled past the hero.
+    const hint = document.querySelector<HTMLElement>('[data-scroll-hint]');
+    const heroSection = document.getElementById('home');
+    if (hint && heroSection) {
+        const update = () => {
+            const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+            hint.classList.toggle('is-hidden', window.scrollY + window.innerHeight >= heroBottom + 100);
+        };
+        window.addEventListener('scroll', update, { passive: true });
+        update();
+    }
+</script>

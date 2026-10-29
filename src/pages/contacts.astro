@@ -1,0 +1,215 @@
+---
+import { getImage } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import photo from '../assets/photo.png';
+import { card, links, person } from '../data/site';
+
+// Rendered inside an SVG <image>, so it needs a URL rather than an <img>.
+const cardPhoto = await getImage({ src: photo, width: 455, format: 'webp' });
+const photoHeight = (170 * photo.height) / photo.width;
+
+const socials = [
+    { name: 'linkedin', label: 'LinkedIn', href: links.linkedin, external: true },
+    { name: 'github', label: 'GitHub', href: links.github, external: true },
+    { name: 'email', label: 'Email', href: links.email, external: false },
+    { name: 'phone', label: 'Phone', href: links.phone, external: false },
+    { name: 'whatsapp', label: 'WhatsApp', href: links.whatsapp, external: true },
+] as const;
+
+// Blob outline from the original contact card.
+const blob =
+    'M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z';
+---
+
+<Base title={`${person.name} – Contact`} description={`Get in touch with ${person.fullName}, ${person.role}, or schedule a call.`}>
+    <section class="contact-card">
+        <div class="container contact-card__grid">
+            <div class="contact-card__photo">
+                <svg viewBox="0 0 200 187" role="img" aria-label={person.name}>
+                    <defs>
+                        <clipPath id="blob">
+                            <path d={blob} />
+                        </clipPath>
+                    </defs>
+                    <path d={blob} class="contact-card__blob" />
+                    <g clip-path="url(#blob)">
+                        <image href={cardPhoto.src} x="12" y="4" width="170" height={photoHeight} />
+                    </g>
+                </svg>
+            </div>
+
+            <div class="contact-card__body">
+                <h1 class="contact-card__name">{person.name}</h1>
+                <p class="contact-card__role">{person.role}</p>
+                {card.lines.map((line) => <p class="contact-card__line" set:html={line} />)}
+
+                <ul class="contact-card__socials">
+                    {
+                        socials.map((s) => (
+                            <li>
+                                <a
+                                    class="icon-btn"
+                                    href={s.href}
+                                    aria-label={s.label}
+                                    title={s.label}
+                                    {...(s.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                                >
+                                    <Icon name={s.name} />
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+
+                <div class="contact-card__actions">
+                    <a
+                        class="btn btn--contained btn--large"
+                        href={links.calendly}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-schedule
+                    >
+                        <Icon name="calendar" /> Schedule a Call
+                    </a>
+                    <a class="btn btn--outlined btn--large" href="/">
+                        <Icon name="arrowBack" /> View Full Site
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</Base>
+
+<link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
+<script is:inline src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+<script>
+    // Open Calendly as a popup when its widget has loaded; otherwise the link
+    // simply opens the booking page in a new tab.
+    type Calendly = { initPopupWidget: (options: { url: string }) => void };
+    const button = document.querySelector<HTMLAnchorElement>('[data-schedule]')!;
+    button.addEventListener('click', (e) => {
+        const calendly = (window as unknown as { Calendly?: Calendly }).Calendly;
+        if (!calendly) return;
+        e.preventDefault();
+        calendly.initPopupWidget({ url: button.href });
+    });
+</script>
+
+<style>
+    .contact-card {
+        display: flex;
+        align-items: center;
+        min-height: 100vh;
+        min-height: 100svh;
+        padding: 96px 0 64px;
+        background: var(--hero-bg);
+    }
+
+    .contact-card__grid {
+        display: grid;
+        gap: 40px;
+        justify-items: center;
+        text-align: center;
+    }
+
+    @media (min-width: 768px) {
+        .contact-card__grid {
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            justify-items: start;
+            gap: 64px;
+            max-width: 960px;
+            text-align: left;
+        }
+    }
+
+    .contact-card__photo {
+        width: min(270px, 70vw);
+        animation: pop 0.8s ease 0.2s both;
+    }
+
+    .contact-card__blob {
+        fill: var(--primary);
+    }
+
+    @keyframes pop {
+        from {
+            opacity: 0;
+            transform: scale(0.85);
+        }
+    }
+
+    .contact-card__name {
+        margin-bottom: 4px;
+        font-size: clamp(2.2rem, 1.6rem + 2vw, 3rem);
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        line-height: 1.2;
+        background: var(--hero-name);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        width: fit-content;
+        margin-inline: auto;
+    }
+
+    @media (min-width: 768px) {
+        .contact-card__name {
+            margin-inline: 0;
+        }
+    }
+
+    .contact-card__role {
+        margin-bottom: 16px;
+        color: var(--primary);
+        font-size: 1.35rem;
+        font-weight: 600;
+    }
+
+    .contact-card__line {
+        color: var(--text-muted);
+    }
+
+    .contact-card__line :global(a) {
+        color: var(--primary);
+        font-weight: 600;
+        text-decoration: none;
+        border-bottom: 2px dotted var(--primary);
+    }
+
+    .contact-card__socials {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin: 24px 0 32px;
+        padding: 0;
+        list-style: none;
+    }
+
+    @media (min-width: 768px) {
+        .contact-card__socials {
+            justify-content: flex-start;
+        }
+    }
+
+    .contact-card__socials .icon-btn {
+        width: 44px;
+        height: 44px;
+    }
+
+    .contact-card__actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+        .contact-card__actions {
+            justify-content: flex-start;
+        }
+    }
+</style>
